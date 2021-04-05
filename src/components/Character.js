@@ -1,18 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-const Characters = () => {
-  const [characters, setCharacters] = useState([]);
-  useEffect(() => {
-    axios
-      .get("http://swapi.dev/api/people/")
-      .then((res) => res.data)
-      .then((data) => setCharacters(data.results))
-      .catch((err) => console.error(err));
-  }, []);
-
-  const CharactersWrapper = styled.div`
+const Character = (props) => {
+  const { name, height, eye_color, mass, birth_year } = props;
+  const CharacterWrapper = styled.div`
     box-shadow: 2px 2px 3px 2px #303030;
     border-radius: 12px;
     display: flex;
@@ -21,29 +12,23 @@ const Characters = () => {
     margin: 1em auto;
     padding: 8px;
     background-color: #222;
-    opacity: .80;
+    opacity: 0.8;
     color: whitesmoke;
     &:hover {
-        color: #FFE81F;
-        transform: scale(1.05);
+      color: #ffe81f;
+      transform: scale(1.05);
     }
   `;
 
-  return characters ? (
-    <div id="characters_wrapper">
-      {characters.map((person, index) => (
-        <CharactersWrapper className="person" key={index}>
-          <h2>{person.name}</h2>
-          <p>
-            Born in {person.birth_year}, {person.name} is {person.height}cm tall
-            with {person.eye_color} eyes and weighs {person.mass} kilos.
-          </p>
-        </CharactersWrapper>
-      ))}
-    </div>
-  ) : (
-    <div className="loader"></div>
+  return (
+    <CharacterWrapper className="props">
+      <h2>{name}</h2>
+      <p>
+        Born in {birth_year}, {name} is {height}cm tall with {eye_color} eyes
+        and weighs {mass} kilos.
+      </p>
+    </CharacterWrapper>
   );
 };
 
-export default Characters;
+export default Character;
