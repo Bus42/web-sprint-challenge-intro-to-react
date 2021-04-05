@@ -11,8 +11,9 @@ const Characters = () => {
       .then((data) => setCharacters(data.results))
       .catch((err) => console.error(err));
   }, []);
+
   const CharactersWrapper = styled.div`
-    box-shadow: 2px 2px 3px 3px #303030;
+    box-shadow: 2px 2px 3px 2px #303030;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -22,7 +23,12 @@ const Characters = () => {
     background-color: #222;
     opacity: .80;
     color: whitesmoke;
+    &:hover {
+        color: #FFE81F;
+        transform: scale(1.05);
+    }
   `;
+
   return characters ? (
     <div id="characters_wrapper">
       {characters.map((person, index) => (
