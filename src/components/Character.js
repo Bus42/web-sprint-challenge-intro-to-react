@@ -24,9 +24,12 @@ const Characters = () => {
     opacity: .80;
     color: whitesmoke;
     &:hover {
-        color: #FFE81F;
+        background-color: #CCC;
+        color: #007AAF;
         transform: scale(1.05);
+        opacity: 1;
     }
+    transition: all 300ms ease-in-out;
   `;
 
   return characters ? (
